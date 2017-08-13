@@ -28,7 +28,6 @@ COPY start-squeezebox.sh /start-squeezebox.sh
 RUN chmod 755 /entrypoint.sh /start-squeezebox.sh
 
 USER squeezeboxserver
-VOLUME /test
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["lms"]
