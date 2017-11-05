@@ -5,7 +5,6 @@ ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 ENV PACKAGE_VERSION_URL=http://www.mysqueezebox.com/update/?version=7.9.1&revision=1&geturl=1&os=deb
 
-
 RUN apt-get update && apt-get -y --no-install-recommends upgrade && \
 	apt-get -y --no-install-recommends --force-yes  install sudo curl faad flac lame sox libio-socket-ssl-perl && \
 	url=$(curl "$PACKAGE_VERSION_URL" | sed 's/_all\.deb/_arm\.deb/') && \
@@ -17,7 +16,7 @@ RUN apt-get update && apt-get -y --no-install-recommends upgrade && \
         mkdir $SQUEEZE_VOL && \
         chown squeezeboxserver $SQUEEZE_VOL && \
 	chgrp nogroup $SQUEEZE_VOL && \
-	apt-get remove -y curl && apt-get -y autoremove && \
+	apt-get -y autoremove && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 VOLUME $SQUEEZE_VOL
