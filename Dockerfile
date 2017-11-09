@@ -7,6 +7,7 @@ ENV PACKAGE_VERSION_URL=http://www.mysqueezebox.com/update/?version=7.9.1&revisi
 
 RUN apt-get update && apt-get -y --no-install-recommends upgrade && \
 	apt-get -y --no-install-recommends --force-yes  install sudo curl faad flac lame sox libio-socket-ssl-perl && \
+        adduser --system --disabled-login --uid=2000 squeezeboxserver && \
 	url=$(curl "$PACKAGE_VERSION_URL" | sed 's/_all\.deb/_arm\.deb/') && \
 	echo "Install $url..." && \
 	curl -Lsf -o /tmp/logitechmediaserver.deb $url && \
