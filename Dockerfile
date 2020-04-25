@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV PACKAGE_VERSION_URL=http://www.mysqueezebox.com/update/?version=7.9.1&revision=1&geturl=1&os=deb
 
 RUN apt-get update && apt-get -y --no-install-recommends upgrade && \
-	apt-get -y --no-install-recommends --force-yes  install sudo curl faad flac lame sox libio-socket-ssl-perl wget pv iproute2 && \
+	apt-get -y --no-install-recommends --force-yes  install sudo curl faad flac lame sox libio-socket-ssl-perl wget pv iproute2 ca-certificates && \
         adduser --system --disabled-login --uid=2000 squeezeboxserver && \
 	url=$(curl "$PACKAGE_VERSION_URL" | sed 's/_all\.deb/_arm\.deb/') && \
 	echo "Install $url..." && \

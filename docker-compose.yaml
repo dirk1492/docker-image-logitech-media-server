@@ -1,0 +1,11 @@
+version: '2.0'
+services:
+  lms:
+    image: logitechmediaserver-arm32v7:7.9.1
+    restart: always
+    dns: 192.168.1.1
+    network_mode: host
+    volumes:
+    - /media/Data/squeezebox:/srv/squeezebox
+    - /media:/media
+    - /etc/localtime:/etc/localtime:ro
