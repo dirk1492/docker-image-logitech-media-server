@@ -1,11 +1,36 @@
 version: '2.0'
 services:
   lms:
-    image: logitechmediaserver-arm32v7:7.9.1
+    image: dil001/logitechmediaserver-arm32v7:7.9.1
     restart: always
     dns: 192.168.1.1
-    network_mode: host
+    network_mode: "host" 
+    ports:
+    - "9001:9000"
+    - "9090:9090"
+    - "3483:3483"
+    - "3483:3483/udp"
     volumes:
     - /media/Data/squeezebox:/srv/squeezebox
+    - /media:/media
+    - /etc/localtime:/etc/localtime:ro
+  lms-control:
+    image: dil001/lms-control
+    restart: always
+    environment:
+    - LMS_SERVER=pi004
+    - TIMETABLE=22:00:00=20,23:00:00=15,00:00:00=0,05:00=100
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+  samba:
+    image: dperson/samba:aarch64
+    restart: always
+    command: -s "media;/media;yes;yes;yes;all;all;lms" -u "lms;km2412se" -w LMS -S -n -g "unix charset = utf-8" -g "dos charset = cp1252"  
+    ports:
+    - "139:139"
+    - "445:445"
+    environment:
+    - USERID=2000
+    volumes:
     - /media:/media
     - /etc/localtime:/etc/localtime:ro
