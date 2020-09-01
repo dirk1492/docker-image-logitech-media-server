@@ -1,4 +1,4 @@
-# Arm32v7 Docker Container for Logitech Media Server
+# Arm32v7 und AMD64 Docker Container for Logitech Media Server
 
 This is a Docker image for running the Logitech Media Server package
 (aka SqueezeboxServer).
@@ -13,7 +13,7 @@ Run Directly:
                -v /etc/localtime:/etc/localtime:ro \
                -v <local-state-dir>:/srv/squeezebox \
                -v <media-dir>:/media \
-               dil001/logitech-media-server-arm32v7
+               dil001/logitech-media-server
 
 
 forked from https://github.com/larsks/docker-image-logitech-media-server
