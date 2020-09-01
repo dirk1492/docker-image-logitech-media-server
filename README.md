@@ -1,4 +1,4 @@
-# Arm32v7 und AMD64 Docker Container for Logitech Media Server
+## Arm32v7 und x86_64 Docker container for Logitech Media Server
 
 This is a Docker image for running the Logitech Media Server package
 (aka SqueezeboxServer).
